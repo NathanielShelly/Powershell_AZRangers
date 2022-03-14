@@ -17,7 +17,7 @@ $databaseName = "AZRangerSmartRetail"
 # The ip address range that you want to allow to access the database
 $startIp = "0.0.0.0"
 $endIp = "0.0.0.0"
-$SQLInstance = 
+$SQLInstance = "SQLInstance$(Get-Random)"
 $TSQLFile = "https://github.com/NathanielShelly/Powershell_AZRangers/blob/383d2663d5a6aaa591939f09c615f56b4dcf30b3/SQLCreateSmartRetailDB.sql"
 
 Set-AzContext -SubscriptionId $subscriptionId 

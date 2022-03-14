@@ -1,3 +1,5 @@
+Import-Module SQLServer -force
+
 $Credential = Get-Credential
 Connect-AzAccount -Credential $Credential
 # Enter the SubscriptionId where you want to create the database below
@@ -15,6 +17,8 @@ $databaseName = "AZRangerData"
 # The ip address range that you want to allow to access the database
 $startIp = "0.0.0.0"
 $endIp = "0.0.0.0"
+$SQLInstance = "SQLInstance16"
+$TSQLFile = "https://github.com/NathanielShelly/Powershell_AZRangers/blob/383d2663d5a6aaa591939f09c615f56b4dcf30b3/SQLCreateSmartRetailDB.sql"
 
 Set-AzContext -SubscriptionId $subscriptionId 
 $resourceGroup = New-AzResourceGroup -Name $resourceGroupName -Location $location
@@ -32,3 +36,5 @@ $database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
     -ServerName $serverName `
     -DatabaseName $databaseName `
     -RequestedServiceObjectiveName "S0" 
+
+Invoke-Sqlcmd -ServerInstance $SqlInstance -Database $databaseName -InputFile  $TSQLFile
